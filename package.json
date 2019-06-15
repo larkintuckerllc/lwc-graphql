@@ -1,0 +1,59 @@
+{
+    "name": "lwc-graphql",
+    "description": "Example of LWC and GraphQL",
+    "version": "0.1.0",
+    "author": "John Tucker",
+    "bugs": "https://github.com/larkintuckerllc/lwc-graphql/issues",
+    "dependencies": {
+        "apollo-boost": "^0.4.2",
+        "graphql": "^14.3.1",
+        "lwc-services": "^1.2.2"
+    },
+    "devDependencies": {
+        "@salesforce/eslint-config-lwc": "^0.3.0",
+        "eslint": "^5.16.0",
+        "eslint-config-prettier": "^5.0.0",
+        "eslint-plugin-prettier": "^3.1.0",
+        "husky": "^2.4.1",
+        "lint-staged": "^8.2.1",
+        "prettier": "^1.18.2"
+    },
+    "engines": {
+        "node": ">=10.0.0"
+    },
+    "homepage": "https://github.com/larkintuckerllc/lwc-graphql",
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged"
+        }
+    },
+    "keywords": [
+        "lwc"
+    ],
+    "license": "MIT",
+    "lint-staged": {
+        "**/*.{css,html,js,json,md,yaml,yml}": [
+            "prettier --write"
+        ],
+        "**/modules/**/*.js": [
+            "eslint"
+        ],
+        "*": [
+            "git add"
+        ]
+    },
+    "repository": "larkintuckerllc/lwc-graphql",
+    "scripts": {
+        "build": "lwc-services build -m production",
+        "build:development": "lwc-services build",
+        "lint": "eslint ./src/**/*.js",
+        "prettier": "prettier --write '**/*.{css,html,js,json,md,yaml,yml}'",
+        "prettier:verify": "prettier --list-different '**/*.{css,html,js,json,md,yaml,yml}'",
+        "serve": "lwc-services serve",
+        "test:unit": "lwc-services test",
+        "test:unit:coverage": "lwc-services test --coverage",
+        "test:unit:debug": "lwc-services test --debug",
+        "test:unit:watch": "lwc-services test --watch",
+        "watch": "lwc-services watch"
+    }
+}
