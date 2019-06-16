@@ -1,0 +1,17 @@
+<template>
+    <template if:true={loading}>
+        <div>Loading...</div>
+    </template>
+    <template if:false={loading}>
+        <template if:true={error}>
+            <div>Error</div>
+        </template>
+        <template if:false={error}>
+            <template for:each={todos} for:item="todo">
+                <div key={todo.nodeId}>
+                    {todo.title}
+                </div>
+            </template>
+        </template>
+    </template>
+</template>
