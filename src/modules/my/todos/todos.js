@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost';
 import { LightningElement, track } from 'lwc';
-import { getClient } from 'my/client';
+import client from 'my/client';
 
 export const ALL_TODOS_QUERY = gql`
     {
@@ -15,7 +15,6 @@ export const ALL_TODOS_QUERY = gql`
 `;
 
 export default class Todos extends LightningElement {
-    client = getClient();
     @track error = false;
     @track loading = false;
     subscription;
@@ -25,7 +24,7 @@ export default class Todos extends LightningElement {
         const queryOptions = {
             query: ALL_TODOS_QUERY
         };
-        const observable = this.client.watchQuery(queryOptions);
+        const observable = client.watchQuery(queryOptions);
         this.subscription = observable.subscribe(
             this.observableNextCallback,
             this.observableErrorCallback,
@@ -33,7 +32,7 @@ export default class Todos extends LightningElement {
         );
         this.loading = true;
         try {
-            await this.client.query(queryOptions);
+            await client.query(queryOptions);
             this.loading = false;
         } catch (err) {
             this.loading = false;

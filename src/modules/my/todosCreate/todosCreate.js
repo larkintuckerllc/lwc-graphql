@@ -1,6 +1,6 @@
 import { gql } from 'apollo-boost';
 import { LightningElement, track } from 'lwc';
-import { getClient } from 'my/client';
+import client from 'my/client';
 import { ALL_TODOS_QUERY } from 'my/todos';
 
 const CREATE_TODO_MUTATION = gql`
@@ -34,7 +34,6 @@ const handleMutationUpdate = (cache, { data }) => {
 };
 
 export default class TodosCreate extends LightningElement {
-    client = getClient();
     @track error = false;
     @track loading = false;
     @track title = '';
@@ -61,7 +60,7 @@ export default class TodosCreate extends LightningElement {
         this.error = false;
         this.loading = true;
         try {
-            await this.client.mutate(mutationOptions);
+            await client.mutate(mutationOptions);
             this.title = '';
             this.valid = false;
         } catch (err) {
