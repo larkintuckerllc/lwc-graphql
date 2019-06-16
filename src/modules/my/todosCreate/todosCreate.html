@@ -1,13 +1,18 @@
 <template>
-  <form onsubmit={handleSubmit}>
-    <div>
-      <input disabled={loading} oninput={handleInput} type="text" value={title} />
-    </div>
-    <template if:true={error}>
-      <div>Error</div>
-    </template>
-    <div>
-      <input disabled={invalidOrLoading} type="submit" />
-    </div>
-  </form>
+    <form onsubmit={handleSubmit}>
+        <div>
+            <input
+                disabled={loading}
+                oninput={handleInput}
+                type="text"
+                value={title}
+            />
+        </div>
+        <template if:true={error}>
+            <div>Error</div>
+        </template>
+        <div>
+            <input disabled={invalidOrLoading} type="submit" />
+        </div>
+    </form>
 </template>
